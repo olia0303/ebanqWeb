@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="2" name="Critical Path Test" parallel="tests">
+    <test name="Sub-suite #1 - Cases">
+        <classes>
+            <class name="com.ebanq.web.tests.LoginTest"/>
+        </classes>
+    </test> <!-- Test -->
+</suite>
