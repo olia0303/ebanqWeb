@@ -15,9 +15,9 @@ public class LoginPage extends BasePage {
     }
 
     public String login(String username, String password){
-        $(By.xpath("//input[@type='email']")).sendKeys(username);
-        $(By.xpath("//input[@type='password']")).sendKeys(password);
-        $(By.xpath("//button[text()='Sign In']")).click();
+        $("[formcontrolname=email]").sendKeys(username);
+        $("[formcontrolname=password]").sendKeys(password);
+        $("[type=submit]").click();
         return url();
     }
     
@@ -27,7 +27,7 @@ public class LoginPage extends BasePage {
 
     @Override
     public LoginPage isPageOpened(){
-        $(By.xpath("//button[text()='Sign In']")).shouldBe(Condition.visible);
+        $("[type=submit]").shouldBe(Condition.visible);
         return this;
     }
 }

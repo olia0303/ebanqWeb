@@ -30,7 +30,7 @@ public class LoginSteps {
         driver = new ChromeDriver(options);
         Configuration.timeout = 30000;
         setWebDriver(driver);
-        getWebDriver().manage().window().setSize(new Dimension(1280, 1024));
+        getWebDriver().manage().window().maximize();
     }
 
     @Step("Login into the system using credentials: {username}, {password}")
