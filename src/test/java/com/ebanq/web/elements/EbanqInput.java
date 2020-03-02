@@ -28,5 +28,3 @@ public class EbanqInput extends ElementImpl implements Input{
         write(text);
     }
 }
-
-

@@ -18,7 +18,7 @@ public class ProfilesTest extends BaseTest {
     
     @Test(description = "Creation of Administrator")
     public void createAdministratorProfilesTest() {
-        loginSteps.login(new TestData().ADMIN_USER, new TestData().ADMIN_PASS);
+        loginSteps.logIn(new TestData().ADMIN_USER, new TestData().ADMIN_PASS);
         Administrator administrator = AdministratorFactory.getAdministrator("Personal");
         profilesSteps.openAdministratorProfiles()
                      .createAdministrator(administrator);
