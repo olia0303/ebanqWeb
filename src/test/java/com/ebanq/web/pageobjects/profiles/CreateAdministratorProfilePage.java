@@ -5,7 +5,6 @@ import com.ebanq.web.elements.EbanqInput;
 import com.ebanq.web.elements.EbanqSelect;
 import com.ebanq.web.model.Administrator;
 import lombok.extern.log4j.Log4j2;
-import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;
 

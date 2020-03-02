@@ -5,12 +5,10 @@ import com.ebanq.web.pageobjects.HomePage;
 import com.ebanq.web.pageobjects.LoginPage;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import utils.driver.CapabilitiesGenerator;
-
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static com.codeborne.selenide.WebDriverRunner.setWebDriver;
 
@@ -34,17 +32,17 @@ public class LoginSteps {
     }
 
     @Step("Login into the system using credentials: {username}, {password}")
-    public void login(String username, String password){
+    public void logIn(String username, String password){
         startBrowser();
         loginPage
                 .openPage()
-                .login(username, password);
+                .logIn(username, password);
         homePage.isPageOpened();
     }
 
     @Step("Log out from system")
     public void logOut(){
-        loginPage.logOut();
+        homePage.logOut();
         loginPage.isPageOpened();
         closeBrowser();
     }
