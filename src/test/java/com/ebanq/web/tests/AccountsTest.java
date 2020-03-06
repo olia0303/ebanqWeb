@@ -8,10 +8,11 @@ import org.testng.annotations.Test;
 public class AccountsTest extends BaseTest {
     @Test(description = "New account creation filling all the required fields")
     public void createNewAccountTest() {
-        Account account = AccountFactory.getAccount("4", "Savings - EUR", "mjohnson", "Active", "100.00");
+        Account account = AccountFactory.getAccount("2", "Savings - EUR", "mvojnovi", "Active", "100.00");
         loginSteps.logIn(testData.ADMIN_USER, testData.ADMIN_PASS);
         accountsSteps.openCreateNewAccountsPage()
                 .createNewAccount(account)
-                .accountDetailsInTableShouldBeCorrect(account);
+                .accountDetailsInTableShouldBeCorrect(account)
+                .accountDetailsInAccountEditPageShouldBeCorrect(account);
     }
 }

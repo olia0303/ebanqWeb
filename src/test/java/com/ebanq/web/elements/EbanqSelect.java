@@ -7,7 +7,7 @@ import org.openqa.selenium.By;
 @Log4j2
 public class EbanqSelect extends ElementImpl implements Select {
 
-    private final static String SELECT_ELEMENT_XPATH = "%s//label[normalize-space(text()) = \"%s\"]/../..//ng-select/div";
+    private final static String SELECT_ELEMENT_XPATH = "%s//label[normalize-space(text()) = '%s']/ancestor::div[contains(@class, 'elem')]//ng-select/div";
     private final static String SELECT_OPTION_XPATH = "//div[contains(@class,'ng-option')]//span[contains(text(),'%s')]";
     
     private String label;
