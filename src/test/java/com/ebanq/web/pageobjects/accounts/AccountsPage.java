@@ -33,11 +33,11 @@ public class AccountsPage extends BasePage {
 
     public AccountsPage isAccountVisibleOnGrid(Account account) {
         isPageOpened();
-        String currentOwner = new EbanqTable(account.getAccountNumber(), "Owner").get();
-        String currentType = new EbanqTable(account.getAccountNumber(), "Type").get();
-        String currentCurrency = new EbanqTable(account.getAccountNumber(), "Currency").get();
-        String currentStatus = new EbanqTable(account.getAccountNumber(), "Status").get();
-        String currentBalance = new EbanqTable(account.getAccountNumber(), "Balance").get();
+        String currentOwner = new EbanqTable(account.getAccountNumber()).get("Owner");
+        String currentType = new EbanqTable(account.getAccountNumber()).get("Type");
+        String currentCurrency = new EbanqTable(account.getAccountNumber()).get("Currency");
+        String currentStatus = new EbanqTable(account.getAccountNumber()).get("Status");
+        String currentBalance = new EbanqTable(account.getAccountNumber()).get("Balance");
         assertEquals(currentOwner, account.getUser());
         assertTrue(account.getAccountType().contains(currentType));
         assertTrue(account.getAccountType().contains(currentCurrency));

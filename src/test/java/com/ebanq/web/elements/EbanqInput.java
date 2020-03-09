@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 
 @Log4j2
 public class EbanqInput extends ElementImpl implements Input{
-    private static final String INPUT_ELEMENT_XPATH = "%s//label[normalize-space(text()) = '%s']/..//input[@class]";
+    private static final String INPUT_ELEMENT_XPATH = "%s//*[normalize-space(text()) = '%s']/..//input[@class]";
     private String label;
     
     public EbanqInput(String label) {

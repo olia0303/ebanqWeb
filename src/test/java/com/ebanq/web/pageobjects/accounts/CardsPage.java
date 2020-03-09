@@ -34,11 +34,11 @@ public class CardsPage extends BasePage {
 
     public CardsPage isCardVisibleOnGrid(Card card) {
         isPageOpened();
-        String currentCardType = new EbanqTable(card.getUser(), "Card type").get();
-        String currentExpirationDate = new EbanqTable(card.getUser(), "Expiration Date").get();
-        String currentStatus = new EbanqTable(card.getUser(), "Status").get();
+        String currentCardType = new EbanqTable(card.getUser()).get("Card type");
+        String currentExpirationDate = new EbanqTable(card.getUser()).get("Expiration Date");
+        String currentStatus = new EbanqTable(card.getUser()).get("Status");
         if(card.getCardType().equals("Mastercard Gold Prepaid")) {
-            String currentCardNumber = new EbanqTable(card.getUser(), "Card #").get();
+            String currentCardNumber = new EbanqTable(card.getUser()).get("Card #");
             assertEquals(currentCardNumber, card.getCardNumber());
         }
         assertTrue(currentExpirationDate.contains(card.getExpirationDateMonth()));

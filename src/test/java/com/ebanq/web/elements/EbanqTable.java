@@ -1,16 +1,50 @@
 package com.ebanq.web.elements;
 
+import com.codeborne.selenide.Condition;
 import org.openqa.selenium.By;
 
-public class EbanqTable extends ElementImpl implements Table {
-    private static final String TABLE_ELEMENT_XPATH = "//*[@title = '%s']/ancestor::tr/td[@data-title='%s']";
+import java.util.HashMap;
 
-    public EbanqTable(String keyCellText, String necessaryValue) {
-        super(By.xpath(String.format(TABLE_ELEMENT_XPATH, keyCellText, necessaryValue)));
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
+
+public class EbanqTable extends ElementImpl implements Table {
+    private static final String TABLE_ELEMENT_XPATH = "//*[normalize-space(text())= '%s']/ancestor::tr";
+
+    public EbanqTable(String keyCellText) {
+        super(By.xpath(String.format(TABLE_ELEMENT_XPATH, keyCellText)));
     }
 
     @Override
-    public String get() {
-        return getText();
+    public String get(String necessaryValue) {
+        return element.$(By.xpath(String.format(".//td[@data-title='%s']", necessaryValue))).getText();
+    }
+
+    /**The method collects all the information of a table row and composes it into pairs of values.
+     * The first value is the column title of the table. And the second value is the desired value of this column.
+     * To use the method, you must pass the text of the required cell, which will be the key.
+     *
+     * Example how you can get info from column "Owner:
+     * HashMap<String, String> example;
+     * example.get("Owner");
+     *
+     * @return - HashMap<String, String>
+     */
+    @Override
+    public HashMap<String, String> getRow() {
+        int columnsQty = $$(By.xpath("//tr/th")).size();
+        HashMap<String, String> cell = new HashMap<String, String>();
+        int isInvisibleColumnExist = 0;
+        for(int j = 1; j <= columnsQty; j++) {
+            int i = j;                                                                  //  it's necessary when columns Qty in thead are not equels columns Qty in tbody
+                if(!element.$(By.xpath(".//td[" + j + "]")).is(Condition.visible)) {
+                    isInvisibleColumnExist++;
+                }
+            String cellHeaderText = $(By.xpath("//tr/th[" + j + "]")).getText();
+            i += isInvisibleColumnExist;
+            String cellText = element.$(By.xpath(".//td[" + i + "]")).getText();
+            cell.put(cellHeaderText, cellText);
+        }
+        return cell;
     }
 }
