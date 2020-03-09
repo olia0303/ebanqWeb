@@ -1,4 +1,4 @@
-package com.ebanq.web.steps;
+package com.ebanq.web.steps.accounts;
 
 import com.ebanq.web.model.Account;
 import com.ebanq.web.pageobjects.accounts.AccountsPage;
