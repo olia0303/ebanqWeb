@@ -22,8 +22,10 @@ public class RequestTest extends BaseTest {
                 "ebanqclient");
         //create new transfer as an user
         loginSteps.logIn(user.getEmail(), user.getPassword());
+        reportsUserSteps.getAccountAmount(transfer);
         String requestID = transferUserSteps.openCreateNewTransferRequestPage("Transfer Between Accounts")
                 .createNewTransferRequest(transfer);
+        reportsUserSteps.validateFinalDebitAccountAmount(transfer);
         loginSteps.logOut();
         //validate the transfer and approve it as an admin
         loginSteps.logIn(testData.ADMIN_USER, testData.ADMIN_PASS);
