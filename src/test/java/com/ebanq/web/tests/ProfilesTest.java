@@ -21,7 +21,9 @@ public class ProfilesTest extends BaseTest {
         loginSteps.logIn(new TestData().ADMIN_USER, new TestData().ADMIN_PASS);
         Administrator administrator = AdministratorFactory.getAdministrator("Personal");
         profilesSteps.openAdministratorProfiles()
-                     .createAdministrator(administrator);
+                     .createAdministrator(administrator)
+                     .openAdministratorSummaryDetails(administrator)
+                     .validateAdministratorDetails(administrator);
         loginSteps.logOut();
     }
 }

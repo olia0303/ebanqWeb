@@ -1,12 +1,17 @@
 package com.ebanq.web.elements;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
+import utils.JavascriptUtilities;
 
 import java.util.HashMap;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
+
+
 
 public class EbanqTable extends ElementImpl implements Table {
     private static final String TABLE_ELEMENT_XPATH = "//*[normalize-space(text())= '%s']/ancestor::tr";
@@ -46,5 +51,13 @@ public class EbanqTable extends ElementImpl implements Table {
             cell.put(cellHeaderText, cellText);
         }
         return cell;
+    }
+    
+    public String openLinkFromRowByText(String columnName, String rowText) {
+        SelenideElement el;
+                el= $(By.xpath(String.format("//table//th[@name='%s']/ancestor::table//td[contains(text(),\"%s\")]", columnName, rowText)));
+        new JavascriptUtilities().scrollToElement(getWebDriver(), el);
+        new JavascriptUtilities().clickJs(getWebDriver(), el);
+        return rowText;
     }
 }
